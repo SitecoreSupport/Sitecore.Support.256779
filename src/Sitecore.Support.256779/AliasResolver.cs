@@ -10,6 +10,8 @@ namespace Sitecore.Support.Pipelines.HttpRequest
   using Sitecore.Security.AccessControl;
   using Sitecore.SecurityModel;
   using Sitecore.Web;
+
+
   /// <summary>
   /// Resolves aliases.
   /// </summary>
@@ -158,7 +160,9 @@ namespace Sitecore.Support.Pipelines.HttpRequest
       }
       Tracer.Warning("Permission denied for item: " + item.Paths.Path);
       args.PermissionDenied = true;
-      return item;
+
+      args.Url.ItemPath = item.Uri.Path;
+      return null;
     }
     #endregion
   }
